@@ -1,14 +1,15 @@
-version: "2.3"
+version: "3.2"
 
 services:
   web:
     image: py-dir-listing
     build: .
     stop_signal: SIGINT       # python listens to SIGINT, not SIGTERM
+    restart: "no"
     ports:
       - "8080:80"
     volumes:
       - type: bind
         source: ${MNTDIR}
-        target: /var/www/Pictures
+        target: /var/www
         read_only: true
